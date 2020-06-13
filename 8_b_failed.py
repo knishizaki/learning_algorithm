@@ -39,23 +39,28 @@ for i in range(Q):
 #print(l_r)
 
 max_n=[]
+min_n=[]
 for i in range(Q):
     max_n.append(l_r[i][1])
+for i in range(Q):
+    min_n.append(l_r[i][0])
 max_n_value=max(max_n)
 n = max_n_value
+n_min = min(min_n)
 #print(n)
 #print(prime_all(n)) #素数リスト完成
 is_prime = prime_all(n)
-p = 0
+is_prime_and= [False]*(n+1)
+
+
+for i in range((n+1)//2 +1 ):
+    if is_prime[i]==True:
+        if is_prime[(2*i)-1]==True:
+            is_prime_and[i]=True
+
 for p in range(Q):
     o = (l_r[p][0]+1)//2
     u = (l_r[p][1]+1)//2
-    k = o
-    counts = 0 
-    while k<=u:
-        s = 2*k-1
-        if is_prime[k]== True and is_prime[s] == False:
-            counts += 1      
-        k+= 1
-    print(len([i for i in range(o, u+1) if is_prime[i]])-counts)
+    #print(is_prime_and)
+    print(len([i for i in range(o, u+1) if is_prime_and[i]]))
 
